@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.header {
+    background: purple;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.main {
+    padding: 20px;
+}
+
+.tasks {
+    margin-top: 50px;
+}
+
+.task {
+    display: block;
+    list-style: none;
+    background-color: aquamarine;
+    margin: 20px;
+    padding: 30px;
+    font-weight: bold;
+    color: #000000;
+    text-transform: uppercase;
+}
+
+.btn--remove {
+    float: right;
+}
+
+.is-completed {
+    background-color: green;
+}
