@@ -2,7 +2,8 @@ const fieldTask = document.querySelector(".field__task");
 const buttonInputTask = document.querySelector(".task__add");
 const todoList = document.querySelector(".todo__list");
 
-let taskList = ["Решить задачу", "Поесть", "Погулять"];
+
+let taskList = [...JSON.parse(localStorage.getItem("tasks"))];
 
 const addTask = (task) => {
     if (!task.trim()) {
@@ -10,6 +11,7 @@ const addTask = (task) => {
         return;
     } else {
         taskList.push(task);
+        localStorage.setItem("tasks", JSON.stringify(taskList));
     }
 
     renderTask(task);
@@ -17,6 +19,8 @@ const addTask = (task) => {
 
 const removeTask = (taskElement) => {
     taskList = taskList.filter(task => task !== taskElement);
+    localStorage.setItem("tasks", JSON.stringify(taskList));
+
     renderAllTasks();
 };
 
@@ -43,7 +47,7 @@ const renderTask = (task) => {
 
 const renderAllTasks = () => {
     todoList.innerHTML = "";
-    taskList.forEach(renderTask);
+    JSON.parse(localStorage.getItem("tasks") || []).forEach(renderTask);
 };
 
 renderAllTasks();
@@ -64,3 +68,4 @@ document.addEventListener("click", (e) => {
         doneTask(e.target.closest(".task"));
     }
 });
+
