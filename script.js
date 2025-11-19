@@ -1,5 +1,6 @@
 const fieldTask = document.querySelector(".field__task");
 const buttonInputTask = document.querySelector(".task__add");
+const buttonExampleTask = document.querySelector(".example__add");
 const todoList = document.querySelector(".todo__list");
 
 
@@ -15,6 +16,7 @@ const addTask = (task) => {
     }
 
     renderTask(task);
+    fieldTask.value = "";
 };
 
 const removeTask = (taskElement) => {
@@ -29,9 +31,15 @@ const doneTask = (taskElement) => {
 };
 
 const renderTask = (task) => {
+    const taskTitle = document.querySelector(".task__title");
+
     const liTask = document.createElement("li");
     const spanTask = document.createElement("span");
     const btnRemoveTask = document.createElement("button");
+
+    taskTitle.length == 0 
+        ? taskTitle.textContent = "Задач не найдено" 
+        : taskTitle.textContent = `Список задач: (${taskList.length})`;
 
     liTask.className = "task";
     spanTask.className = "taskText";
@@ -50,9 +58,17 @@ const renderAllTasks = () => {
     JSON.parse(localStorage.getItem("tasks") || []).forEach(renderTask);
 };
 
+const getExampleTasks = async () => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos?_limit=5");
+    const data = await response.json();
+
+    data.forEach(e => addTask(e.title));
+};
+
 renderAllTasks();
 
 buttonInputTask.addEventListener("click", () => { addTask(fieldTask.value); });
+buttonExampleTask.addEventListener("click", () => { getExampleTasks(); });
 
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("btn--remove")) {

@@ -4,7 +4,7 @@
 }
 
 .header {
-    background: purple;
+    background: rgb(0, 98, 128);
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -14,13 +14,33 @@
     padding: 20px;
 }
 
+.text__add {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.field__task {
+    border-radius: 50px;
+    padding: 5px;
+}
+
+.task__add {
+    border-radius: 50px;
+    padding: 5px 13px 5px 13px;
+    background-color: #7FFFD4;
+    border: 2px solid #006280;
+}
+
+.task__add:hover {
+    background-color: #109ac4;
+}
+
 .tasks {
     margin-top: 50px;
 }
 
 .task {
-    display: block;
-    list-style: none;
+    list-style-type: decimal;
     background-color: aquamarine;
     margin: 20px;
     padding: 30px;
